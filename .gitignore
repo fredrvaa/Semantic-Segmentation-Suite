@@ -13,6 +13,11 @@ loss_vs_epochs.png
 colour_codes.csv
 CamVid_train.tfrecords
 tfrecords.py
+
+# Folders
 pred_images/
-dataset/
+test_images/
+datasets/
 rust/
+prev_checkpoints/
+combined_dataset_semseg/
