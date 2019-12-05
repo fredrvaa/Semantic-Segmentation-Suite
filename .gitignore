@@ -21,3 +21,5 @@ datasets/
 rust/
 prev_checkpoints/
 combined_dataset_semseg/
+test_augmented/
+better_rust_semseg/
