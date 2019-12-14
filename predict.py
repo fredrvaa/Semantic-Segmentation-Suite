@@ -14,7 +14,8 @@ parser.add_argument('--checkpoint_path', type=str, default=None, required=True, 
 parser.add_argument('--crop_height', type=int, default=512, help='Height of cropped input image to network')
 parser.add_argument('--crop_width', type=int, default=512, help='Width of cropped input image to network')
 parser.add_argument('--model', type=str, default='FC-DenseNet56', required=False, help='The model you are using')
-parser.add_argument('--dataset', type=str, default="CamVid", required=False, help='The dataset you are using')
+parser.add_argument('--dataset', type=str, default=None, required=False, help='The dataset you are using')
+parser.add_argument('--save_vid', type=str, default=False, required=False, help='Wether to save video')
 args = parser.parse_args()
 
 
@@ -96,6 +97,11 @@ elif args.video:
     if (cap.isOpened()== False): 
         print("Error opening video stream or file")
 
+    if (args.save_vid):
+        frame_width = int(cap.get(3))
+        frame_height = int(cap.get(4))
+        out = cv2.VideoWriter(f"outpy_{args.model}_{args.dataset}.avi",cv2.VideoWriter_fourcc('M','J','P','G'), 10, (frame_width,frame_height))
+
     while(cap.isOpened()):
         start_time = time.time()
         ret, loaded_image = cap.read()
@@ -127,6 +133,9 @@ elif args.video:
 
             file_name = utils.filepath_to_name(args.video)
             cv2.imshow('pred', final)
+
+            if (args.save_vid):
+                out.write(final)
             #cv2.imshow('original', loaded_image)
             #cv2.imshow('mask', resized_mask)
             print("FPS: ", 1.0 / (time.time() - start_time), end="\r") # FPS = 1 / time to process loop
@@ -136,6 +145,8 @@ elif args.video:
             break
 
     cap.release()
+    if (args.save_vid):
+        out.release()
     cv2.destroyAllWindows()
 
 elif args.folder:

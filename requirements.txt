@@ -1,0 +1,8 @@
+numpy
+cython
+Pillow
+gast==0.2.2
+scikit-learn
+scipy==1.1.0
+tensorflow-gpu
+opencv-python

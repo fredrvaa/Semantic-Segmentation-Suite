@@ -13,13 +13,20 @@ loss_vs_epochs.png
 colour_codes.csv
 CamVid_train.tfrecords
 tfrecords.py
+*.avi
+*.mp4
 
 # Folders
 pred_images/
+pred_images_densenet/
+pred_images_deeplab/
+pred_images/
 test_images/
+test_images_2/
 datasets/
 rust/
 prev_checkpoints/
 combined_dataset_semseg/
 test_augmented/
 better_rust_semseg/
+
